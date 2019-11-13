@@ -1,8 +1,11 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<nav>
-  <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">home</a>
-  <a routerLink="/series" routerLinkActive="active">series</a>
-  <a routerLink="/sequel" routerLinkActive="active">sequel</a>
-</nav>
+<div class="wrap">
+	<nav class="tab-list">
+		<a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">home</a>
+		<a routerLink="/series" routerLinkActive="active">series</a>
+		<a routerLink="/sequel" routerLinkActive="active">sequel</a>
+		<a routerLink="/addnew" routerLinkActive="active">add new</a>
+	</nav>
 
-<router-outlet></router-outlet>
+	<router-outlet></router-outlet>
+</div>
+

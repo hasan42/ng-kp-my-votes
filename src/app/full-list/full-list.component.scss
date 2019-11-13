@@ -1,0 +1,18 @@
+.list {
+  background-color: #eef2f3;
+  padding: 20px;
+  overflow-y: auto;
+  border: 1px solid #0b8793;
+  border-top: 0px;
+}
+
+.votes {
+}
+.votes__item {
+  display: grid;
+  // justify-items: stretch;
+  // align-items: stretch;
+  // justify-content: stretch;
+  // align-content: stretch;
+  grid-template-columns: 50px 100px 1fr repeat(4, 30px);
+}

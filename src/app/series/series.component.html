@@ -1,3 +1,43 @@
-<p>
-  series works!
-</p>
+<div class="list">
+  <h2>Series list</h2>
+  <div class="votes">
+    <div class="votes__item">
+      <div><b>idx</b></div>
+      <div><b>id</b></div>
+      <div><b>name</b></div>
+      <div><b>vote</b></div>
+      <div><b>seq</b></div>
+      <div><b>ser</b></div>
+      <div><b>del</b></div>
+    </div>
+    <div *ngFor="let item of listVotes(); index as i" class="votes__item">
+      <div>
+        {{i+1}}
+      </div>
+      <div>
+        <a id={{item.id}} href="http://kinopoisk.ru{{item.link}}" rel="noopener noreferrer" target="_blank">
+          {{item.id}}
+        </a>
+      </div>
+      <div>
+        {{item.nameRus}}<br />{{item.nameEng}}
+      </div>
+      <div>
+        {{item.vote}}
+      </div>
+      <div>
+        <a [routerLink]="['sequel']" fragment="{{item.id}}">
+          <fa-icon class="icon-btn_green" *ngIf="item.sequel && item.sequel !== false" [icon]="faListOl"></fa-icon>
+        </a>
+      </div>
+      <div>
+        <app-series-episodes [id]="item.id" [serial]="item.serial"></app-series-episodes>
+      </div>
+      <div>
+        <button class="icon-btn icon-btn_red" (click)="delIt(item.id)">
+          <fa-icon [icon]="faTimes" color=""></fa-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div className="form-wrap">
+  <form>
+    <div>
+      <p>Example:</p>
+      <pre>&#123;"id":"326","link":"/film/326/","nameRus":"Побег из Шоушенка (1994)","nameEng":"The Shawshank Redemption","vote":"9"&#125;</pre>
+    </div>
+    <div className="form-item">
+      <label>
+        <div>Object</div>
+        <input [(ngModel)]="form.item"
+          name="item"
+          type="text"
+          required
+          placeholder="Enter item"
+          #item="ngModel" />
+      </label>
+    </div>
+    <div className="form-item">
+      <button [disabled]="item.invalid" type="submit" (click)="onSubmit()" class="btn btn-primary btn-sm">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+      {{validMsg}}
+    </div>
+  </form>
+</div>

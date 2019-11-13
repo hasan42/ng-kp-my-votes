@@ -1,0 +1,16 @@
+<p>seasons: {{serial.episodes.length}} <button (click)="onClickShowDetail()">+</button></p>
+<p *ngIf="showDetail">
+  <span *ngFor="let ep of serial.episodes">
+    {{ep}};
+  </span>
+</p>
+<p>current: {{serial.current}} <button (click)="onClickShowEditor()">+</button></p>
+<p *ngIf="showEditor">
+  {{allSeason}}
+  <select (change)="onChangeSeason($event.target.value)">
+    <option *ngFor="let el of makeArray(allSeason); index as i" [value]="i+1" [selected]="currentSeason == i+1">{{i+1}}</option>
+  </select>
+  <select (change)="onChangeEpisode($event.target.value)">
+    <option *ngFor="let el of getSeasonEpisode(currentSeason); index as i" [value]="i+1" [selected]="currentEpisode == i+1">{{i+1}}</option>
+  </select>
+</p>  

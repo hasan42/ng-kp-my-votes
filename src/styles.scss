@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+  position: relative;
+  // height: 100%;
+  background: rgba(0,32,63,1);
+  background: -webkit-linear-gradient(top, rgba(0,32,63,1) 0%, rgba(0,10,20,1) 100%);
+  background: linear-gradient(to bottom, rgba(0,32,63,1) 0%, rgba(0,10,20,1) 100%);
+  color: #111111;
+}
+
+a {
+  color: #2B32B2;
+}
+a:hover, a:active {
+  color: #1488CC;
+}
+
+.icon-btn {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+.icon-btn_red {
+  svg {
+    color: rgb(255, 65, 108);
+  }
+}
+.icon-btn_green {
+  svg {
+    color: rgb(0, 176, 155);
+  }
+}
+
