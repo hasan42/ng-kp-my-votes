@@ -21,8 +21,24 @@ export class VotesService {
 
     if(filter === 'sequel')
       filmArr = this.list.filter(item => item.sequel && item.sequel !== false);
+    if(filter === 'sequel-full'){
+      filmArr = this.list.filter(item => item.sequel && item.sequel !== false);
+      filmArr = filmArr.filter(item => item.sequel.items.every( (v)=>this.getWatched(v.id) ))
+    }
+    if(filter === 'sequel-not-full'){
+      filmArr = this.list.filter(item => item.sequel && item.sequel !== false);
+      filmArr = filmArr.filter(item => item.sequel.items.some( (v)=>!this.getWatched(v.id) ))
+    }
     if(filter === 'series')
       filmArr = this.list.filter(item => item.serial);
+    if(filter === 'series-full'){
+      filmArr = this.list.filter(item => item.serial);
+      filmArr = filmArr.filter(item => item.serial.current === item.serial.episodes[item.serial.episodes.length - 1])
+    }
+    if(filter === 'series-not-full'){
+      filmArr = this.list.filter(item => item.serial);
+      filmArr = filmArr.filter(item => !item.serial.current || item.serial.current !== item.serial.episodes[item.serial.episodes.length - 1])
+    }
 
     return filmArr
   }

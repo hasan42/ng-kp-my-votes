@@ -1,10 +1,14 @@
 <div class="list">
   <h3>Add new items</h3>
   <p>You can add new items. Use form or try add new JSON object.</p>
-  <div>
+  <ol class="form-list">
+  	<li class="form-list__item" [class.active]="showTab === 'form'" (click)="onClickTab('form')">Form</li>
+  	<li class="form-list__item" [class.active]="showTab === 'json'" (click)="onClickTab('json')">JSON</li>
+  </ol>
+  <div *ngIf="showTab === 'form'" class="form-content">
     <app-add-new-fields></app-add-new-fields>
   </div>
-  <div>
+  <div *ngIf="showTab === 'json'" class="form-content">
     <app-add-new-object></app-add-new-object>
   </div>
 </div>

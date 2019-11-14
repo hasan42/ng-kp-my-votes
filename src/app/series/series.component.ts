@@ -13,12 +13,18 @@ export class SeriesComponent implements OnInit {
   faListOl = faListOl;
   faTimes = faTimes;
 
+  listItems = 'series';
+
   constructor(public vS: VotesService) { }
 
   ngOnInit() {
   }
   listVotes(){
-    return this.vS.getFilterList('series');
+    return this.vS.getFilterList(this.listItems);
+  }
+
+  changeOn(text){
+    this.listItems = text
   }
 
 }

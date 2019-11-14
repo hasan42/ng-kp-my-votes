@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddNewComponent implements OnInit {
 
+  showTab: string = 'form';
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onClickTab(tab){
+    this.showTab = tab;
   }
 
 }

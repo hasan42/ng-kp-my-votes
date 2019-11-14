@@ -5,3 +5,32 @@
   border: 1px solid #0b8793;
   border-top: 0px;
 }
+
+.form-list {
+  margin: 20px 0 0;
+  border-bottom: 1px solid #0b8793;
+  padding-left: 0;
+}
+
+.form-list__item {
+  color: #111;
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -1px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  &.active {
+    color: #111;
+    background-color: #eef2f3;
+    border: solid #0b8793;
+    border-width: 1px 1px 0 1px;
+    cursor: default;
+  }
+}
+.form-content {
+  background-color: #eef2f3;
+  padding: 20px;
+  overflow-y: auto;
+  border: 1px solid #0b8793;
+  border-top: 0px;
+}

@@ -13,12 +13,18 @@ export class SequelComponent implements OnInit {
   faListOl = faListOl;
   faTimes = faTimes;
 
+  listItems = 'sequel';
+
   constructor(public vS: VotesService) { }
 
   ngOnInit() {
   }
   listVotes(){
-    return this.vS.getFilterList('sequel');
+    return this.vS.getFilterList(this.listItems);
+  }
+
+  changeOn(text){
+    this.listItems = text
   }
 
   itWatched(id){
