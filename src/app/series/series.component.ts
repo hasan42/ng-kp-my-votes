@@ -26,5 +26,8 @@ export class SeriesComponent implements OnInit {
   changeOn(text){
     this.listItems = text
   }
+  delIt(id){
+    this.vS.deleteItem(id);
+  }
 
 }

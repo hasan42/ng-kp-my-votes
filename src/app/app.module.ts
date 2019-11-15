@@ -17,6 +17,7 @@ import { SeriesEpisodesComponent } from './series-episodes/series-episodes.compo
 import { AddNewComponent } from './add-new/add-new.component';
 import { AddNewObjectComponent } from './add-new-object/add-new-object.component';
 import { AddNewFieldsComponent } from './add-new-fields/add-new-fields.component';
+import { SequelEpisodesComponent } from './sequel-episodes/sequel-episodes.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AddNewFieldsComponent } from './add-new-fields/add-new-fields.component
     SeriesEpisodesComponent,
     AddNewComponent,
     AddNewObjectComponent,
-    AddNewFieldsComponent
+    AddNewFieldsComponent,
+    SequelEpisodesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 <div class="list">
   <h2>Full list</h2>
   <div class="votes">
-    <div class="votes__item">
+    <div class="votes__item text-size-3">
       <div><b>idx</b></div>
       <div><b>id</b></div>
       <div><b>name</b></div>
@@ -14,7 +14,7 @@
     <div *ngIf="(listVotes());  else loading;">
       <ng-container *ngFor="let item of listVotes(); index as i">
         <div class="votes__item">
-          <div>
+          <div class="text-size-0 text-grey">
             {{i+1}}
           </div>
           <div>
@@ -25,20 +25,20 @@
           <div>
             {{item.nameRus}}<br />{{item.nameEng}}
           </div>
-          <div>
+          <div class="text-center">
             {{item.vote}}
           </div>
-          <div>
+          <div class="text-center">
             <a [routerLink]="['sequel']" fragment="{{item.id}}">
               <fa-icon class="icon-btn_green" *ngIf="item.sequel && item.sequel !== false" [icon]="faListOl"></fa-icon>
             </a>
           </div>
-          <div>
+          <div class="text-center">
             <a [routerLink]="['series']" fragment="{{item.id}}">
               <fa-icon class="icon-btn_green" *ngIf="item.serial" [icon]="faHistory"></fa-icon>
             </a>
           </div>
-          <div>
+          <div class="text-center">
             <button class="icon-btn icon-btn_red" (click)="delIt(item.id)">
               <fa-icon [icon]="faTimes" color=""></fa-icon>
             </button>

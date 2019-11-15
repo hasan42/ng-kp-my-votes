@@ -8,6 +8,7 @@ html, body {
   color: #111111;
 }
 body {
+  font-size: 16px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -15,11 +16,45 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  display: flex;
+  /* align-content: center; */
+  justify-content: center;
+  align-items: center;
+  &.off {
+    display: none;
+  }
+}
+
 a {
   color: #2B32B2;
+  &:hover, &:active {
+    color: #1488CC;
+  }
 }
-a:hover, a:active {
-  color: #1488CC;
+.text-center {
+  text-align: center;
+}
+.text-grey {
+  color: #bebebe;
+}
+.text-size-0 {
+  font-size: 10px;
+}
+.text-size-1 {
+  font-size: 11px;
+}
+.text-size-2 {
+  font-size: 12px;
+}
+.text-size-3 {
+  font-size: 13px;
 }
 
 .icon-btn {
@@ -44,6 +79,53 @@ a:hover, a:active {
   }
 }
 
+.list {
+  background-color: #eef2f3;
+  padding: 20px;
+  overflow-y: auto;
+  border: 1px solid #0b8793;
+  border-top: 0px;
+}
+
+.votes__item {
+  display: grid;
+}
+
+.sequel-list {
+  padding: 0;
+  color: #fff;
+  li {
+    padding: 3px 5px;
+    white-space: nowrap;
+    list-style-type: none;
+    background: linear-gradient(to right, rgb(255, 65, 108), rgb(255, 75, 43));
+    &.watched {
+      background: linear-gradient(to right, rgb(0, 176, 155), rgb(150, 201, 61));
+    }
+  }
+  a {
+    color: #fff;
+    text-decoration: none;
+    &:hover, &:active {
+      color: #2B32B2;
+    }
+  }
+}
+
+.votes-filter {
+  margin-bottom: 20px;
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 0;
+    outline: 0;
+    border-radius: 5px;
+    &.active {
+      color: #fff;
+      background: linear-gradient(147deg, rgb(195, 55, 100), rgb(29, 38, 113));
+    }
+  }
+}
 
 .form-wrap {}
 .form-item {

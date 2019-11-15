@@ -1,16 +1,18 @@
 <div class="list">
   <h2>Series list</h2>
-  <button class="icon-btn icon-btn_red" (click)="changeOn('series')">
-          all
-        </button><br>
-  <button class="icon-btn icon-btn_red" (click)="changeOn('series-full')">
-          full
-        </button><br>
-        <button class="icon-btn icon-btn_red" (click)="changeOn('series-not-full')">
-          Nfull
-        </button>
+  <div class="votes-filter">
+    <button class="icon-btn icon-btn_red" [class.active]="listItems === 'series'" (click)="changeOn('series')">
+      all
+    </button>
+    <button class="icon-btn icon-btn_red" [class.active]="listItems === 'series-full'" (click)="changeOn('series-full')">
+      full
+    </button>
+    <button class="icon-btn icon-btn_red" [class.active]="listItems === 'series-not-full'" (click)="changeOn('series-not-full')">
+      not-full
+    </button>
+  </div>
   <div class="votes">
-    <div class="votes__item">
+    <div class="votes__item text-size-3">
       <div><b>idx</b></div>
       <div><b>id</b></div>
       <div><b>name</b></div>
@@ -20,7 +22,7 @@
       <div><b>del</b></div>
     </div>
     <div *ngFor="let item of listVotes(); index as i" class="votes__item">
-      <div>
+      <div class="text-size-0 text-grey">
         {{i+1}}
       </div>
       <div>
@@ -31,10 +33,10 @@
       <div>
         {{item.nameRus}}<br />{{item.nameEng}}
       </div>
-      <div>
+      <div class="text-center">
         {{item.vote}}
       </div>
-      <div>
+      <div class="text-center">
         <a [routerLink]="['sequel']" fragment="{{item.id}}">
           <fa-icon class="icon-btn_green" *ngIf="item.sequel && item.sequel !== false" [icon]="faListOl"></fa-icon>
         </a>
@@ -42,7 +44,7 @@
       <div>
         <app-series-episodes [id]="item.id" [serial]="item.serial"></app-series-episodes>
       </div>
-      <div>
+      <div class="text-center">
         <button class="icon-btn icon-btn_red" (click)="delIt(item.id)">
           <fa-icon [icon]="faTimes" color=""></fa-icon>
         </button>

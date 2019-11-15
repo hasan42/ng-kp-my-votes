@@ -1,0 +1,9 @@
+start id: {{id}}<br>
+count items: {{items.length}}<br>
+<button (click)="onClickShowList()">+</button><br>
+<ul class="sequel-list" *ngIf="active">
+  <li *ngFor="let item of items" [class.watched]="itWatched(item.id)">
+    {{item.serial}}. <a href="http://kinopoisk.ru/film/{{item.id}}/">{{item.id}}</a>
+  </li>
+</ul>
+
