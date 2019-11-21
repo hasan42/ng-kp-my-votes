@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { VotesService } from '../votes.service';
+import { faAngleUp, faAngleDown, faEye, faLowVision } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-series-episodes',
@@ -10,6 +11,11 @@ export class SeriesEpisodesComponent implements OnInit {
 
   @Input() id: string;
   @Input() serial: any;
+
+  faAngleUp = faAngleUp;
+  faAngleDown = faAngleDown;
+  faEye = faEye;
+  faLowVision = faLowVision;
 
   currentSeason: number = null;
   currentEpisode: number = null;
@@ -92,7 +98,7 @@ export class SeriesEpisodesComponent implements OnInit {
         return cur
       }
     }else{
-      return "dont check"
+      return 'no select'
     }
     
   }

@@ -1,9 +1,11 @@
-start id: {{id}}<br>
-count items: {{items.length}}<br>
-<button (click)="onClickShowList()">+</button><br>
+start id: <a href="http://kinopoisk.ru/film/{{id}}/" target="_blank">{{id}}</a><br>
+count items: {{items.length}} <button (click)="onClickShowList()" class="icon-btn">
+    <fa-icon *ngIf="active" [icon]="faAngleUp"></fa-icon>
+    <fa-icon *ngIf="!active" [icon]="faAngleDown"></fa-icon>
+  </button><br>
 <ul class="sequel-list" *ngIf="active">
   <li *ngFor="let item of items" [class.watched]="itWatched(item.id)">
-    {{item.serial}}. <a href="http://kinopoisk.ru/film/{{item.id}}/">{{item.id}}</a>
+    {{item.serial}}. <a href="http://kinopoisk.ru/film/{{item.id}}/" target="_blank">{{item.id}}</a>
   </li>
 </ul>
 

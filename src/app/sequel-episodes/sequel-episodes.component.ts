@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { VotesService } from '../votes.service';
+import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sequel-episodes',
@@ -10,6 +11,9 @@ export class SequelEpisodesComponent implements OnInit {
 
   @Input() id: string;
   @Input() items: any;
+
+  faAngleUp = faAngleUp;
+  faAngleDown = faAngleDown;
 
   active: boolean = false;
 
