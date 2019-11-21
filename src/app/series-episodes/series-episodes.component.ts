@@ -82,4 +82,19 @@ export class SeriesEpisodesComponent implements OnInit {
     this.showEditor = !this.showEditor;
   }
 
+  checkItFull(){
+    let cur = this.serial.current;
+    if(cur){
+      let last = this.serial.episodes[this.serial.episodes.length - 1]
+      if(cur === last){
+        return 'full'
+      }else{
+        return cur
+      }
+    }else{
+      return "dont check"
+    }
+    
+  }
+
 }

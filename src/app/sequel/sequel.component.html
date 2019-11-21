@@ -1,4 +1,4 @@
-<div class="list">
+
   <h2>Sequel list</h2>
   <div class="votes-filter">
     <button class="icon-btn icon-btn_red" [class.active]="listItems === 'sequel'" (click)="changeOn('sequel')">
@@ -21,34 +21,41 @@
       <div><b>ser</b></div>
       <div><b>del</b></div>
     </div>
-    <div *ngFor="let item of listVotes(); index as i" class="votes__item">
-      <div class="text-size-0 text-grey">
-        {{i+1}}
+    <ng-container *ngFor="let item of listVotes(); index as i; first as first; last as last">
+      <ng-container *ngIf="first">
+        {{ showPreloader() }}
+      </ng-container>
+      <div class="votes__item">
+        <div class="text-size-0 text-grey">
+          {{i+1}}
+        </div>
+        <div>
+          <a id={{item.id}} href="http://kinopoisk.ru{{item.link}}" rel="noopener noreferrer" target="_blank">
+            {{item.id}}
+          </a>
+        </div>
+        <div>
+          {{item.nameRus}}<br />{{item.nameEng}}
+        </div>
+        <div class="text-center">
+          {{item.vote}}
+        </div>
+        <div>
+          <app-sequel-episodes [id]="item.sequel.sequelParent" [items]="item.sequel.items"></app-sequel-episodes>
+        </div>
+        <div class="text-center">
+          <a [routerLink]="['series']" fragment="{{item.id}}">
+            <fa-icon class="icon-btn_green" *ngIf="item.serial" [icon]="faHistory"></fa-icon>
+          </a>
+        </div>
+        <div class="text-center">
+          <button class="icon-btn icon-btn_red" (click)="delIt(item.id)">
+            <fa-icon [icon]="faTimes" color=""></fa-icon>
+          </button>
+        </div>
       </div>
-      <div>
-        <a id={{item.id}} href="http://kinopoisk.ru{{item.link}}" rel="noopener noreferrer" target="_blank">
-          {{item.id}}
-        </a>
-      </div>
-      <div>
-        {{item.nameRus}}<br />{{item.nameEng}}
-      </div>
-      <div class="text-center">
-        {{item.vote}}
-      </div>
-      <div>
-        <app-sequel-episodes [id]="item.sequel.sequelParent" [items]="item.sequel.items"></app-sequel-episodes>
-      </div>
-      <div class="text-center">
-        <a [routerLink]="['series']" fragment="{{item.id}}">
-          <fa-icon class="icon-btn_green" *ngIf="item.serial" [icon]="faHistory"></fa-icon>
-        </a>
-      </div>
-      <div class="text-center">
-        <button class="icon-btn icon-btn_red" (click)="delIt(item.id)">
-          <fa-icon [icon]="faTimes" color=""></fa-icon>
-        </button>
-      </div>
-    </div>
+      <ng-container *ngIf="last">
+        {{ hidePreloader() }}
+     </ng-container>
+    </ng-container>
   </div>
-</div>

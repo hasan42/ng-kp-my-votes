@@ -1,5 +1,3 @@
-<div style="color: white">I'm {{message | async}} </div>
-
 <div class="wrap">
 	<nav class="tab-list">
 		<a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">full</a>
@@ -7,7 +5,10 @@
 		<a routerLink="/sequel" routerLinkActive="active">sequel</a>
 		<a routerLink="/addnew" routerLinkActive="active">add new</a>
 	</nav>
-
-	<router-outlet></router-outlet>
+	<div class="list">
+		<app-preloader></app-preloader>
+		<router-outlet></router-outlet>
+	</div>
+	
 </div>
 

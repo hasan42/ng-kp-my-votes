@@ -4,7 +4,7 @@
     {{ep}};
   </span>
 </p>
-<p>current: {{serial.current}} <button (click)="onClickShowEditor()">+</button></p>
+<p>current: {{checkItFull()}} <button (click)="onClickShowEditor()">+</button></p>
 <p *ngIf="showEditor">
   {{allSeason}}
   <select (change)="onChangeSeason($event.target.value)">

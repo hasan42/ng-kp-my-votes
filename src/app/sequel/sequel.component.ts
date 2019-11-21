@@ -1,11 +1,6 @@
-import { Component, OnInit,
-         DoCheck,
-         OnChanges,
-        AfterContentInit, 
-        AfterContentChecked, 
-        AfterViewChecked, 
-        AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { VotesService } from '../votes.service';
+import { PreloaderService } from '../preloader.service';
 import { faHistory, faListOl, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -13,13 +8,7 @@ import { faHistory, faListOl, faTimes } from '@fortawesome/free-solid-svg-icons'
   templateUrl: './sequel.component.html',
   styleUrls: ['./sequel.component.scss']
 })
-export class SequelComponent implements OnInit,
-         DoCheck,
-         OnChanges,
-        AfterContentInit, 
-        AfterContentChecked, 
-        AfterViewChecked, 
-        AfterViewInit {
+export class SequelComponent implements OnInit {
 
   faHistory = faHistory;
   faListOl = faListOl;
@@ -27,12 +16,10 @@ export class SequelComponent implements OnInit,
 
   listItems = 'sequel';
 
-  count = 0;
-
-  constructor(public vS: VotesService) { }
+  constructor(public vS: VotesService, public prS: PreloaderService) { }
 
   ngOnInit() {
-    this.log(`ngOnInit`);
+    this.prS.startLoading();
   }
   listVotes(){
     return this.vS.getFilterList(this.listItems);
@@ -49,34 +36,11 @@ export class SequelComponent implements OnInit,
     this.vS.deleteItem(id);
   }
 
-  ngOnChanges() {
-       
-      this.log(`OnChanges`);
-    }
-    ngDoCheck() {
-       
-      this.log(`ngDoCheck`);
-    }
-    ngAfterViewInit() {
-       
-      this.log(`ngAfterViewInit`);
-    }
-    ngAfterViewChecked() {
-       
-      this.log(`ngAfterViewChecked`);
-    }
-    ngAfterContentInit() {
-       
-      this.log(`ngAfterContentInit`);
-    }
-    ngAfterContentChecked() {
-       
-      this.log(`ngAfterContentChecked`);
-    }
- 
-    private log(msg: string) {
-        console.log("sequel " + this.count + ". " + msg);
-        this.count++;
-    }
+  showPreloader(){
+    this.prS.startLoading();
+  }
+  hidePreloader(){
+    this.prS.stopLoading();
+  }
 
 }
