@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 })
 export class VotesService {
 
-  linkJson = '/assets/films-list.json'
+  linkJson = 'films-list.json'
 
   constructor(private http: HttpClient) { }
 
@@ -57,7 +57,7 @@ export class VotesService {
         (json) => {
           this.list = json;
         }
-      ).then(
+      ).finally(
         ()=>{
           this.findDuplicate()
         }
@@ -69,6 +69,7 @@ export class VotesService {
     data.append('json', JSON.stringify(this.list));
 
     this.http.post('json.php', data,{responseType: 'text'}).subscribe((value : any) =>{
+      // console.log(value)
       this.loadList()
     },
     error => {
@@ -77,6 +78,7 @@ export class VotesService {
   }
 
   addNewItem(item){
+    // console.log('addNewItem');
     let filmArray = this.list;
 
     if(Array.isArray(item)){
@@ -90,6 +92,7 @@ export class VotesService {
   }
 
   deleteItem(id){
+    // console.log('deleteItem');
     let filmArray = this.list;
     let el = filmArray.findIndex(item => item.id === id);
     filmArray.splice(el, 1);
@@ -98,14 +101,19 @@ export class VotesService {
   }
 
   findDuplicate(){
+    // console.log('findDuplicate');
     let filmArray = this.list;
     let unique = filmArray.filter((set => item => !set.has(item.id) && set.add(item.id))(new Set));
+    // console.log(filmArray.length, unique.length);
+    if(filmArray.length === unique.length)
+      return false;
 
     this.list = unique;
     this.saveJson();
   }
 
   selectCurrentEpisode(current, id){
+    // console.log('selectCurrentEpisode');
     let filmArray = this.list;
     filmArray.map((item)=>{
       if(item.id === id){
