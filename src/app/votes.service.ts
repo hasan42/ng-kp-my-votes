@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VotesService {
 
-  linkJson = 'films-list.json'
-
-  constructor(private http: HttpClient) { }
-
+  linkJson = '/assets/films-list.json'
   list : any = []
+  observableList
+
+  constructor(private http: HttpClient) {
+    this.observableList = new BehaviorSubject<any[]>(this.list);
+  }
+
 
   getFullList(){
+        console.log('getFullList()')
+    // console.log( this.list );
     return this.list
   }
 
@@ -49,19 +54,25 @@ export class VotesService {
   }
 
   loadList() {
-    fetch(this.linkJson).then(
-        (response) => {
-          return response.json()
-        }
-      ).then(
-        (json) => {
-          this.list = json;
-        }
-      ).finally(
-        ()=>{
-          this.findDuplicate()
-        }
-      );
+    this.http.get(this.linkJson).subscribe((value:any)=>{
+        console.log('loadList()')
+      this.list = value;
+      this.observableList.next(this.list);
+      // this.findDuplicate()
+    })
+    // fetch(this.linkJson).then(
+    //     (response) => {
+    //       return response.json()
+    //     }
+    //   ).then(
+    //     (json) => {
+    //       this.list = json;
+    //     }
+    //   // ).finally(
+    //   //   ()=>{
+    //   //     this.findDuplicate()
+    //   //   }
+    //   );
   }
 
   saveJson() {

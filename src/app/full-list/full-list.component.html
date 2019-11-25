@@ -1,5 +1,8 @@
 <h2>Full list</h2>
 
+<button (click)="showPreloader()">show</button><br>
+<button (click)="hidePreloader()">hide</button><br>
+
 <div>
   <div class="votes">
     <div class="votes__item text-size-3">
@@ -11,9 +14,9 @@
       <div><b>ser</b></div>
       <div><b>del</b></div>
     </div>
-    <ng-container *ngFor="let item of listVotes(); index as i; first as first; last as last">
+    <ng-container *ngFor="let item of items; index as i; first as first; last as last">
       <ng-container *ngIf="first">
-        {{ showPreloader() }}
+        {{ firstload() }}
       </ng-container>
       <div class="votes__item">
         <div class="text-size-0 text-grey">
@@ -47,7 +50,7 @@
         </div>
       </div>
       <ng-container *ngIf="last">
-        {{ hidePreloader() }}
+        {{ lastload() }}
       </ng-container>
     </ng-container>
   </div>

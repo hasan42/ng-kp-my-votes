@@ -18,9 +18,10 @@ export class PreloaderComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.loadingSubscription = this.prS.loadingStatus.subscribe((value) => {
-      // this.loading = value;
+      console.log(value);
+      this.loading = value;
       // this.elmRef.nativeElement.style.display = value ? 'block' : 'none';
-      this.cdr.detectChanges();
+      // this.cdr.detectChanges();
     });
   }
 
