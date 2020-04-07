@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, BehaviorSubject } from 'rxjs';
+import { PreloaderService } from './preloader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,39 +12,47 @@ export class VotesService {
   list : any = []
   observableList
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private prS: PreloaderService) {
     this.observableList = new BehaviorSubject<any[]>(this.list);
   }
 
 
-  getFullList(){
+  getFullList(): Observable<any[]>{
+    let arr = of(this.list);
         console.log('getFullList()')
-    // console.log( this.list );
-    return this.list
+    console.log( arr );
+    return arr
   }
 
   getFilterList(filter){
     let filmArr;
 
-    if(filter === 'sequel')
-      filmArr = this.list.filter(item => item.sequel && item.sequel !== false);
-    if(filter === 'sequel-full'){
-      filmArr = this.list.filter(item => item.sequel && item.sequel !== false);
-      filmArr = filmArr.filter(item => item.sequel.items.every( (v)=>this.getWatched(v.id) ))
-    }
-    if(filter === 'sequel-not-full'){
-      filmArr = this.list.filter(item => item.sequel && item.sequel !== false);
-      filmArr = filmArr.filter(item => item.sequel.items.some( (v)=>!this.getWatched(v.id) ))
-    }
-    if(filter === 'series')
-      filmArr = this.list.filter(item => item.serial);
-    if(filter === 'series-full'){
-      filmArr = this.list.filter(item => item.serial);
-      filmArr = filmArr.filter(item => item.serial.current === item.serial.episodes[item.serial.episodes.length - 1])
-    }
-    if(filter === 'series-not-full'){
-      filmArr = this.list.filter(item => item.serial);
-      filmArr = filmArr.filter(item => !item.serial.current || item.serial.current !== item.serial.episodes[item.serial.episodes.length - 1])
+    switch (filter) {
+      case "sequel":
+        filmArr = this.list.filter(item => item.sequel && item.sequel !== false);
+        break;
+      case "sequel-full":
+        filmArr = this.list.filter(item => item.sequel && item.sequel !== false);
+        filmArr = filmArr.filter(item => item.sequel.items.every( (v)=>this.getWatched(v.id) ))
+        break;
+      case "sequel-not-full":
+        filmArr = this.list.filter(item => item.sequel && item.sequel !== false);
+        filmArr = filmArr.filter(item => item.sequel.items.some( (v)=>!this.getWatched(v.id) ))
+        break;
+      case "series":
+        filmArr = this.list.filter(item => item.serial);
+        break;
+      case "series-full":
+        filmArr = this.list.filter(item => item.serial);
+        filmArr = filmArr.filter(item => item.serial.current === item.serial.episodes[item.serial.episodes.length - 1])
+        break;
+      case "series-not-full":
+        filmArr = this.list.filter(item => item.serial);
+        filmArr = filmArr.filter(item => !item.serial.current || item.serial.current !== item.serial.episodes[item.serial.episodes.length - 1])
+        break;
+      default:
+        filmArr = this.list
+        break;
     }
 
     return filmArr

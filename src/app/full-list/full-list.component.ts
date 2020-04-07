@@ -2,7 +2,8 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { VotesService } from '../votes.service';
 import { PreloaderService } from '../preloader.service';
 import { faHistory, faListOl, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { Subscription ,BehaviorSubject } from 'rxjs';
+import { Subscription ,BehaviorSubject,   } from 'rxjs';
+import { take, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-full-list',
@@ -23,11 +24,32 @@ export class FullListComponent implements OnInit{
 
   ngOnInit() {
     // this.prS.startLoading();
+    // this.subscription = this.vS.getFullList()
     this.subscription = this.vS.observableList
-      .subscribe(item => {
-    this.prS.startLoading();
-        console.log('subscription')
-        this.items= item;
+      // .finally(() => {
+      //   console.log('finalize');
+      //   this.prS.stopLoading()
+      // })
+      // .pipe(
+      //   finalize(() => {
+      //     // Do some work after complete...
+      //     console.log('Finalize method executed before "Data available" (or error thrown)');
+      //   })
+      // )
+      .subscribe(
+        value => {
+          this.prS.startLoading();
+          console.log('subscription')
+          this.items= value;
+        },
+        error => console.log(error),
+        () => {
+          console.log('finish');
+          this.prS.stopLoading()
+        }
+      ).add(() => {
+        console.log('add finish');
+           //Called when operation is complete (both success and error)
       });
     // this.items = this.vS.getFullList();
 

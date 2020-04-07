@@ -22,9 +22,6 @@
       <div><b>del</b></div>
     </div>
     <ng-container *ngFor="let item of listVotes(); index as i; first as first; last as last">
-      <ng-container *ngIf="first">
-        {{ showPreloader() }}
-     </ng-container>
       <div class="votes__item">
         <div class="text-size-0 text-grey">
           {{i+1}}
