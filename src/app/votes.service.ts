@@ -7,9 +7,16 @@ import { Observable, of } from 'rxjs';
 })
 export class VotesService {
 
-  linkJson = 'films-list.json'
+  isDev: boolean = false;
 
-  constructor(private http: HttpClient) { }
+  linkJson = 'films-list.json'
+  linkPhp = 'json.php'
+
+  constructor(private http: HttpClient) {
+    if(this.isDev){
+      this.linkJson = 'assets/films-list.json'
+    }
+  }
 
   list : any = []
 
@@ -65,10 +72,13 @@ export class VotesService {
   }
 
   saveJson() {
+    if(this.isDev){
+      return;
+    }
     let data = new FormData();
     data.append('json', JSON.stringify(this.list));
 
-    this.http.post('json.php', data,{responseType: 'text'}).subscribe((value : any) =>{
+    this.http.post(this.linkPhp, data,{responseType: 'text'}).subscribe((value : any) =>{
       // console.log(value)
       this.loadList()
     },
