@@ -2,28 +2,31 @@
 
 [DEMO](http://ng-kp.irustam.ru/)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.5.
+Каталог/менеджер просмотренных фильмов.
 
-## Development server
+Приложение на Angular.  
+Стили в SCSS.  
+Информация хранится на сервере в JSON.  
+С JSON работает через PHP.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Менее доделанный (функциональный) [аналог на React](https://github.com/hasan42/kp-my-votes).
 
-## Code scaffolding
+Собирается инфомрация о просмотренных фильмах через [расширение для Chrome](https://github.com/hasan42/chrome-extension)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**Сделал:**
+- отображение списка просмотренных фильмов;
+- в фильмах указывается сиквелы/приквелы по порядку;
+- отмечается какие из сиквелов/приквелов просмотренны;
+- если фильм является сериалом - отображается количество сезонов и серий;
+- можно отметить на каком сезоне и эпизоде остановился;
+- возможность добавить новые фильмы через форму или ввиде JSON объекта.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+**Доделать:**
+- прелоадер;
+- поправить верстку;
+- поправить ссылки и якоря на фильмы;
+- добавить импорт/экспорт JSON;
+- переработать в JSON часть сиквелов (сделать отдельным файлом);
+- поиск;
+- (?) избавиться от PHP;
+- (?) сделать систему аккаунтов.
