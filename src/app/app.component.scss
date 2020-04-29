@@ -5,6 +5,14 @@
   height: calc(100% - 20px);
 }
 
+.tabs {
+  position: relative;
+  height: calc(100% - 50px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 .tab-list {
   margin: 20px 0 0;
   border-bottom: 1px solid #0b8793;
@@ -24,6 +32,14 @@
       cursor: default;
     }
   }
+}
+
+.tab-content {
+    background-color: #eef2f3;
+    padding: 20px;
+    overflow-y: auto;
+    border: 1px solid #0b8793;
+    border-top: 0;
 }
 
 .tab-content .tab-list-item {

@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 })
 export class VotesService {
 
-  isDev: boolean = false;
+  isDev: boolean = true;
 
   linkJson = 'films-list.json'
   linkPhp = 'json.php'
