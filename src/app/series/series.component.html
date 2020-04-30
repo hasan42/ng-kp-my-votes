@@ -21,8 +21,8 @@
       <div><b>ser</b></div>
       <div><b>del</b></div>
     </div>
-    <ng-container *ngFor="let item of listVotes(); index as i; first as first; last as last">
-      <div class="votes__item">
+    <ng-container *ngFor="let item of items; index as i; first as first; last as last">
+      <div class="votes__item" *ngIf="item.serial">
         <div class="text-size-0 text-grey">
           {{i+1}}
         </div>

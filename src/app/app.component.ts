@@ -13,7 +13,6 @@ export class AppComponent implements OnInit {
   count = 0;
 
   constructor( public vS: VotesService, private router: Router, public prS: PreloaderService) {
-    this.vS.loadList()
   }
   ngOnInit() {
   	this.prS.startLoading();

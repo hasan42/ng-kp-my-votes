@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VotesService } from '../votes.service';
 import { PreloaderService } from '../preloader.service';
 import { faHistory, faListOl, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Subscription, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-sequel',
@@ -14,19 +15,30 @@ export class SequelComponent implements OnInit {
   faListOl = faListOl;
   faTimes = faTimes;
 
+  items: any;
+  private subscription: Subscription;
+
   listItems = 'sequel';
 
   constructor(public vS: VotesService, public prS: PreloaderService) { }
 
   ngOnInit() {
+    this.vS.setFilterList(this.listItems)
+    this.subscription = this.vS.observableItems.subscribe(
+      value => {
+        this.items = value;
+      },
+      error => console.log(error)
+    );
     this.prS.startLoading();
   }
-  listVotes(){
-    return this.vS.getFilterList(this.listItems);
-  }
+  // listVotes(){
+  //   return this.vS.getFilterList(this.listItems);
+  // }
 
   changeOn(text){
     this.listItems = text
+    this.vS.setFilterList(this.listItems)
   }
 
   itWatched(id){

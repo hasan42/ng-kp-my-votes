@@ -32,13 +32,15 @@ export class SeriesEpisodesComponent implements OnInit {
   constructor(public vS: VotesService) { }
 
   ngOnInit() {
-    if(this.serial.current){
-      this.setCurrent();
-    }else{
-      this.currentSeason = 1;
-      this.currentEpisode = 1;
+    if(this.serial){
+      if(this.serial.current){
+        this.setCurrent();
+      }else{
+        this.currentSeason = 1;
+        this.currentEpisode = 1;
+      }
+      this.allSeason = this.serial.episodes.length;
     }
-    this.allSeason = this.serial.episodes.length;
   }
 
   getSeasonEpisode(curSeas:number): any[] {
